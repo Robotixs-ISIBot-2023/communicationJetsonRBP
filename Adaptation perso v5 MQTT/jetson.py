@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import time
 
 # MQTT broker address
-broker_address = "172.30.40.78"
+broker_address = "localhost"
 
 # Define the function to handle incoming messages
 def on_message(client, userdata, message):
@@ -21,11 +21,11 @@ client.loop_start()
 # Send a message every 5 seconds
 counter = 0
 while True:
-    # Send a message to topic "main_move_forward"
-    message = 750
-    client.publish("main_move_forward", message) # main & secondary
-    message = -90
-    client.publish("main_move_turn", message)
+    # Send a message to topic "main_move"
+    message = 10750 # Go forward 750 mm
+    client.publish("main_move", message) # main & secondary | HERE : Main
+    #message = -90
+    #client.publish("main_move", message)
 
     # Wait 5 seconds
     time.sleep(5)
